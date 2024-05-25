@@ -2,6 +2,7 @@ const cells = document.querySelectorAll("[data-cell]");
 const board = document.getElementById("board");
 const resetButton = document.getElementById("resetButton");
 let isOturn;
+let gameOver = false;
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -26,12 +27,16 @@ function startGame() {
 }
 
 function handleClick(e) {
+  if (gameOver) {
+    return;
+  }
   const cell = e.target;
   const currentPlayer = isOturn ? "O" : "X";
   markCell(cell, currentPlayer);
 
   if (checkWin(currentPlayer)) {
     showTurns(`${currentPlayer} wins the game.`);
+    gameOver = true;
   } else if (isDraw()) {
     showTurns("It's a draw! No one wins the game!");
   } else {
@@ -41,8 +46,9 @@ function handleClick(e) {
 }
 
 function markCell(cell, currentPlayer) {
-  cell.classList.add(currentPlayer);
-  cell.innerHTML = currentPlayer;
+  const shape = document.createElement("div");
+  shape.classList.add(currentPlayer == "X" ? "x-shape" : "o-shape");
+  cell.appendChild(shape);
 }
 
 function showTurns(currentPlayer) {
@@ -53,15 +59,18 @@ function swapTurns() {
   isOturn = !isOturn;
 }
 function isDraw() {
-  return [...cells].every((cell) => {
-    return cell.classList.contains("X") || cell.classList.contains("O");
-  });
+  return [...cells].every((cell) => cell.firstChild);
 }
 
 function checkWin(currentPlayer) {
   return WINNING_COMBINATIONS.some((combination) => {
     return combination.every((index) => {
-      return cells[index].classList.contains(currentPlayer);
+      return (
+        cells[index].firstChild &&
+        cells[index].firstChild.classList.contains(
+          currentPlayer == "X" ? "x-shape" : "o-shape"
+        )
+      );
     });
   });
 }

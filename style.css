@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 :root {
-  --bg-color: rgb(145, 245, 145);
-  --font-style: cursive;
+  --bg-color: rgb(125, 235, 125);
+  --font-style: "Prompt", sans-serif;
 }
 body {
   display: flex;
@@ -20,6 +20,8 @@ body {
 h1 {
   margin-bottom: 20px;
   font-family: var(--font-style);
+  font-weight: 600;
+  font-size: 3rem;
   color: white;
 }
 
@@ -36,7 +38,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
   cursor: pointer;
 }
 
@@ -56,31 +57,70 @@ h1 {
 :nth-child(7) {
   border-bottom: none;
 }
-.cell {
-  color: white;
-  font-size: 3rem;
-  font-weight: 700;
-  font-family: var(--font-style);
-}
+
 h2 {
   margin-top: 20px;
   font-family: var(--font-style);
   color: white;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
-#resetButton {
+.resetButton {
+  font-size: 2rem;
   margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
-  color: white;
-  font-size: 20px;
+  color: rgb(247, 246, 246);
   font-family: var(--font-style);
   width: 250px;
-  height: 50px;
+  height: 70px;
   margin-top: 30px;
   border: 3px solid white;
   border-radius: 5px;
   background-color: var(--bg-color);
+}
+
+:root {
+  --size: 50px; /* You can change the size here */
+  --color: rgb(255, 255, 255); /* You can change the color here */
+}
+
+.x-shape,
+.o-shape {
+  margin: 20px;
+}
+
+.x-shape {
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+}
+
+.x-shape::before,
+.x-shape::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--size) * 1.5);
+  height: 10px;
+  background-color: var(--color);
+  transform-origin: center;
+}
+
+.x-shape::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.x-shape::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.o-shape {
+  width: var(--size);
+  height: var(--size);
+  border: 10px solid var(--color);
+  border-radius: 50%;
+  box-sizing: border-box;
 }
