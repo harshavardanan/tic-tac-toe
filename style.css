@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg-color: rgb(145, 245, 145);
+  --font-style: cursive;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-family: var(--font-style);
+  color: white;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  border: 5px solid #fcfafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.cell:first-child,
+:nth-child(2),
+:nth-child(3) {
+  border-top: none;
+}
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+.cell:nth-child(3n + 3) {
+  border-right: none;
+}
+.cell:last-child,
+:nth-child(8),
+:nth-child(7) {
+  border-bottom: none;
+}
+.cell {
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  font-family: var(--font-style);
+}
+h2 {
+  margin-top: 20px;
+  font-family: var(--font-style);
+  color: white;
+}
+
+#resetButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  font-family: var(--font-style);
+  width: 250px;
+  height: 50px;
+  margin-top: 30px;
+  border: 3px solid white;
+  border-radius: 5px;
+  background-color: var(--bg-color);
+}
