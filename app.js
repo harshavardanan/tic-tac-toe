@@ -17,9 +17,12 @@ startGame();
 function startGame() {
   isOturn = false;
   cells.forEach((cell) => {
+    if (cell.firstChild) {
+      cell.removeChild(cell.firstChild);
+    }
+    gameOver = false;
     cell.classList.remove("X");
     cell.classList.remove("O");
-    cell.innerHTML = "";
     cell.removeEventListener("click", handleClick);
     showTurns("X's turn.");
     cell.addEventListener("click", handleClick, { once: true });
